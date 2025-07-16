@@ -1,0 +1,12 @@
+<h2>User Form</h2>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <label>Name:</label>
+  <input formControlName="name" /><br />
+  <label>Email:</label>
+  <input formControlName="email" /><br />
+  <label>City:</label>
+  <input formControlName="city" /><br />
+  <button type="submit">Submit</button>
+</form>
+
+<p *ngIf="submitted">{{ responseMsg }}</p>
