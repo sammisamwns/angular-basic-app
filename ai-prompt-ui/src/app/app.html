@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="header">
+    <h1>{{ title() }}</h1>
+    <p>Enter your prompt below and get an AI-generated response</p>
+  </div>
+
+  <div class="form-section">
+    <div class="input-group">
+      <label for="prompt-input">Your Prompt:</label>
+      <textarea 
+        id="prompt-input"
+        [(ngModel)]="promptText" 
+        rows="5" 
+        placeholder="Enter your prompt here... (e.g., 'Write a haiku about the ocean')"
+        [disabled]="loading">
+      </textarea>
+    </div>
+
+    <button 
+      (click)="submitPrompt()" 
+      [disabled]="loading || !promptText.trim()"
+      class="submit-btn">
+      <span *ngIf="!loading">Generate Response</span>
+      <span *ngIf="loading">Generating...</span>
+    </button>
+  </div>
+
+  <div class="response-section" *ngIf="loading || responseText">
+    <div *ngIf="loading" class="loading">
+      <div class="spinner"></div>
+      <p>AI is thinking...</p>
+    </div>
+
+    <div *ngIf="responseText && !loading" class="response">
+      <h3>AI Response:</h3>
+      <div class="response-content">
+        <pre>{{ responseText }}</pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<router-outlet />
